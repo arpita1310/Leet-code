@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+void miniMaxSum(int arr[5]){
+   long long min=LLONG_MAX,max=LLONG_MIN;
+   int i,j;
+    for(i=0;i<5;++i)
+    {
+        int sum=0;
+        for(j=0;j<5;++j)
+        {
+            if(i!=j)
+                sum+=arr[j];
+        }
+        if(sum>max)
+            max=sum;
+        if (sum<min)
+            min=sum;
+    }
+    cout << min << " " << max << endl;
+}
+
+
+int main(){
+    int n,i;
+    int arr[5];
+    for(i=0;i<5;i++){
+        cin>>arr[i];
+    }
+    miniMaxSum(arr);
+}
