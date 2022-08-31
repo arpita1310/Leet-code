@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int bonAppetit(vector <int> arr,int k, int b){
+    int i,j,sum=0,bill=0;
+    for(i=0;i<arr.size();i++){
+        if(i!=k){
+            sum=sum+arr[i];
+        }
+    }
+    bill=sum/2;
+    return abs(bill-b);
+}
+
+int main(){
+    int n,element,result,k,b;
+    vector<int> arr;
+    cin>>n; 
+    cin>>k;
+    for(int i=0;i<n;i++){
+        cin>>element;
+        arr.push_back(element);
+    }
+    cin>>b;
+    result=bonAppetit(arr, k, b);
+    if(result==0){
+        cout<<"Bon Appetit";
+    }
+    else{
+        cout<<result;
+    }
+}
