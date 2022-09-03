@@ -1,0 +1,40 @@
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int getMoneySpent(vector<int> keyboards, vector<int> drives, int b) {
+    int i,j,sum=0,max=INT_MIN,result=0;
+    for(i=0;i<keyboards.size();i++){
+        for(j=0;j<drives.size();j++){
+            sum=drives[j]+keyboards[i];
+            if(sum>max && sum<b){
+                result=sum;
+            }
+        }
+    }
+    if(result==0){
+        return -1;
+    }
+    else{
+        return result;
+    }
+}
+
+int main()
+{
+    int m,n,i,j,b,elementk,elementd,result;
+    vector<int> keyboards; vector<int> drives;
+    cin>>b;
+    cin>>n;
+    cin>>m;
+    for(i=0;i<n;i++){
+        cin>>elementk;
+        keyboards.push_back(elementk);
+    }
+    for(i=0;i<m;i++){
+        cin>>elementd;
+        drives.push_back(elementd);
+    }
+    result=getMoneySpent(keyboards, drives,b);
+    cout<<result;
+}
