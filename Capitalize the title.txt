@@ -1,0 +1,21 @@
+#include<string>
+class Solution {
+public:
+    string capitalizeTitle(string title) {
+        int i,j=0,n=title.size();
+        for(i=0;i<n;i++){
+            title[i]=tolower(title[i]);
+        }
+        for(i=0;i<=n;i=i+j+1){
+            j=0;
+            while(title[i+j]!=' ' && title[i+j]!='\0'){
+                j++;
+            }
+            if(j>2){
+                title[i]=toupper(title[i]);
+            }
+        }
+        return title;
+    }
+};
+
