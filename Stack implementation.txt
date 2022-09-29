@@ -1,0 +1,130 @@
+#include <stdio.h>
+int push(int arr[],int top);
+int pop(int arr[],int top);
+void peek(int arr[],int top);
+void display(int arr[],int top);
+int isempty(int arr[],int top);
+int isfull(int arr[],int top);
+int main()
+{
+    int a[100],top=-1,n;
+    char ch='y';
+    do{
+        printf("Enter the choice:\n 1.Push\n 2.Pop\n 3.Peek\n 4.Display\n 5.isempty()\n 6.isfull()\n");
+        scanf("%d",&n);
+        switch(n){
+            case 1:
+            {
+            if(top==99){
+                printf("Stack is full");
+            }
+            else{
+                top=push(a,top);
+            }
+            printf("Do you want to continue:");
+            scanf(" %c",&ch);
+            break;
+            }
+            case 2:{
+            if(top==-1){
+                printf("Stack is empty");
+            }
+            else{
+                top=pop(a,top);
+            }
+            printf("Do you want to continue:");
+            scanf(" %c",&ch);
+            break;
+            }
+            case 3:{
+            if(top==-1){
+                printf("Stack is empty");
+            }
+            else{
+                peek(a,top);
+            }
+            printf("Do you want to continue:");
+            scanf(" %c",&ch);
+            break;
+            }
+            case 4:{
+            if(top==-1){
+                printf("Stack is empty");
+            }
+            else{
+                display(a,top);
+            }
+            printf("Do you want to continue:");
+            scanf(" %c",&ch);
+            break;
+            }
+            case 5:{
+            if(isempty(a,top)){
+                printf("stack is empty");
+            }
+            else{
+                printf("Stack is not empty");
+            }
+            printf("Do you want to continue:");
+            scanf(" %c",&ch);
+            break;
+            }
+            case 6:{
+            if(isfull(a,top)){
+                printf("stack is full");
+            }
+            else{
+                printf("Stack is empty");
+            }
+            printf("Do you want to continue:");
+            scanf(" %c",&ch);
+            break;
+            }
+        }
+    }while(ch=='y'|| ch=='Y');
+    return 0;
+}
+
+int push(int arr[],int top){
+    top++;
+    scanf("%d",&arr[top]);
+    return top;
+}
+
+int pop(int arr[],int top){
+    printf("%d\n",arr[top]);
+    top--;
+    return top;
+}
+
+void peek(int arr[],int top){
+     printf("%d\n",arr[top]);
+}
+
+void display(int arr[],int top){
+    printf("\nElements are:\n");
+    while(top>=0){
+        printf("%d\n",arr[top]);
+        top--;
+    }
+}
+
+int isempty(int arr[],int top){
+    if(top==-1){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+int isfull(int arr[],int top){
+    if(top==99){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+
