@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length()) return false;
+        vector<int> counter1(26,0), counter2(26,0);
+        for(int i=0;i<s.length();i++) {
+            counter1[s[i]-'a']++;
+            counter2[t[i]-'a']++;
+        }
+        for(int i=0;i<26;i++) {
+            if(counter1[i] != counter2[i]) return false;
+        }
+        return true;      
+    }
+};
