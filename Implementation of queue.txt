@@ -1,0 +1,139 @@
+#include <stdio.h>
+int enq(int [],int);
+int deq(int [],int,int);
+void display(int [],int,int);
+void peek(int [],int);
+int isempty(int [],int);
+int isfull(int [],int);
+int main(){
+    int sq[100],f=-1,n,r=-1,ch=1;
+    do{
+        printf("Enter choice:");
+        scanf("%d",&n);
+        switch(n){
+            case 1:{
+                if(r==99){
+                    printf("Queue is full\n");
+                }
+                else{
+                    r=enq(sq,r);
+                    if(f==-1){
+                        f=0;
+                    }
+                }
+                printf("do you want to continue? 1 or 0:");
+                scanf("%d",&ch);
+            }
+            break;
+            case 2:{
+                if(f==-1){
+                    printf("queue is empty\n");
+                }
+                else{
+                    f=deq(sq,f,r);
+                }
+                if(f==-1){
+                    r=-1;
+                }
+                printf("do you want to continue? 1 or 0:");
+                scanf("%d",&ch);
+            }
+            break;
+            case 3:{
+                if(f==-1){
+                    printf("Queue is empty\n");
+                }
+                else{
+                    display(sq,f,r);
+                }
+                printf("do you want to continue? 1 or 0:");
+                scanf("%d",&ch);
+            }
+            break;
+            case 4:{
+                if(f==-1){
+                    printf("Queue is empty\n");
+                }
+                else{
+                    peek(sq,r);
+                }
+                printf("do you want to continue? 1 or 0:");
+                scanf("%d",&ch);
+            }
+            break;
+            case 5:{
+                if(isempty(sq,f)){
+                    printf("Queue is empty\n");
+                }
+                else{
+                    printf("Queue is not empty\n");
+                }
+                printf("do you want to continue? 1 or 0:");
+                scanf("%d",&ch);
+            }
+            break;
+            case 6:{
+                if(isfull(sq,r)){
+                    printf("Queue is full");
+                }
+                else{
+                    printf("Queue is not full");
+                }
+                printf("do you want to continue? 1 or 0:");
+                scanf("%d",&ch);
+            }
+            break;
+        }
+    }while(ch==1);
+    return 0;
+}
+
+int enq(int sq[],int r){
+    r++;
+    printf("Enter element:\n");
+    scanf("%d",&sq[r]);
+    return r;
+}
+
+int deq(int sq[],int f,int r){
+    printf("Deleted elment is:");
+    printf("%d \n",sq[f]);
+    if(f==r){
+        f=-1;
+    }
+    else{
+        f++;
+    }
+    return f;
+}
+
+void display(int sq[],int f,int r){
+    printf("Queue elements:\n");
+    while(f<=r){
+        printf("%d \n",sq[f]);
+        f++;
+    }
+}
+
+void peek(int sq[],int r){
+    printf("topmost element:");
+    printf("%d \n",sq[r]);
+}
+
+int isempty(int sq[], int  f){
+    if(f==-1){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+int isfull(int sq[], int  r){
+    if(r==99){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
