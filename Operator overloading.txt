@@ -1,0 +1,43 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+class ovum{
+    int a;
+    public:
+    void getinfo(){
+        cout<<"Enter data:";
+        cin>>a;
+    }
+    void display(){
+        cout<<"Value is:"<<a<<endl;
+    }
+    friend ovum operator ++ (ovum &t);
+    friend ovum operator ++ (ovum &t,int);
+};
+ovum operator ++ (ovum &t){
+    ovum tm;
+    t.a=t.a+1;
+    tm.a=t.a;
+    return tm;
+}
+ovum operator ++ (ovum &t,int){
+    ovum tm;
+    tm.a=t.a;
+    t.a=t.a+1;
+    return tm;
+    
+}
+
+int main(){
+    ovum s1,s2;
+    s1.getinfo();
+    s2= ++s1;
+    s1.display();
+    s2.display();
+    s1.getinfo();
+    s2= s1++;
+    s1.display();
+    s2.display();
+    
+    
+} 
