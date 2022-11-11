@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class Usertwo;
+class Userone{
+    string uname,pid;
+    public:
+    void setdata(string a,string b);
+    friend void userchecker(Userone x,Usertwo y);
+}
+
+class Usertwo{
+    string uname,pid;
+    public:
+    void setdata(string a,string b);
+    friend void userchecker(Userone x,Usertwo y);
+}
+
+void userchecker(Userone x,Usertwo y){
+    if((strcmp(x.uname,y.uname)==0) && (strcmp(x.uname,y.uname)==0)){
+        cout<<"same data;"
+    }
+    else{
+        cout<<"different data";
+    }
+}
