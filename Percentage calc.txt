@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+class student{
+    string name;
+    int rollno,m1,m2,m3;
+    float percent;
+    public:
+    void inputinfo();
+    void calcpercent();
+    void displayinfo();
+};
+
+void student::inputinfo(){
+    cout<<"Enter name:";
+    cin>>name;
+    cout<<"Enter Roll No.:";
+    cin>>rollno;
+    cout<<"Enter 3 subject marks:";
+    cin>>m1>>m2>>m3;
+}
+
+void student::calcpercent(){
+    float s;
+    s=m1+m2+m3;
+    percent=s/3;
+}
+
+void student :: displayinfo(){
+    cout<<"Name:"<<name<<endl;
+    cout<<"Roll no:"<<rollno<<endl;
+    cout<<"Percentage:"<<percent<<endl;
+    if(percent>=90){
+        cout<<"Grade A"<<endl;
+    }
+    else if(percent>=80){
+        cout<<"Grade B"<<endl;
+    }
+     else if(percent>=60){
+        cout<<"Grade C"<<endl;
+    }
+     else if(percent>=40){
+        cout<<"Grade D"<<endl;
+    }
+    else{
+        cout<<"Grade E"<<endl;
+    }
+}
+
+
+int main(){
+    student s1,s2;
+    s1.inputinfo();
+    s2.inputinfo();
+    s1.calcpercent();
+    s2.calcpercent();
+    s1.displayinfo();
+    s2.displayinfo();
+}
