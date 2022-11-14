@@ -1,0 +1,39 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+class swapd
+{
+    int num;
+    string name;
+    public:
+    void setdata(int n,string nm)
+    {
+        num=n;
+        name=nm;    
+    }
+        void show()
+        {
+            cout<<"number is "<<num<<" name is "<<name;
+        }
+        void swapde(swapd &s1,swapd &s2)
+        {
+            int t; 
+            string temp;
+            t=s1.num;
+            s1.num=s2.num;
+            s2.num=t;
+            temp=s1.name;
+            s1.name=s2.name;
+            s2.name=temp;
+        }
+};
+int main()
+{
+    swapd s1,s2,s3;
+    s1.setdata(12,"chirag");
+    s2.setdata(13,"Simran");
+    s1.show();
+    s2.show();
+   swapde(s1,s2);
+    s1.show();
+}
