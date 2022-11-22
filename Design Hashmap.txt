@@ -1,0 +1,27 @@
+class MyHashMap {
+public:
+    vector<int> map;
+    MyHashMap() {
+        map.resize(10,-1);
+    }
+
+    void put(int key, int value) {
+        if(key>=map.size()){
+            map.resize(map.size()+key+1,-1);
+        }
+        map[key]=value;
+    }
+
+    int get(int key) {
+        if(key<map.size()){
+            return map[key];
+        }
+        return -1; 
+    }
+    
+    void remove(int key) {
+        if(key<map.size()){
+            map[key]=-1;
+        }
+    }
+};
