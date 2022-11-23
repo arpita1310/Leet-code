@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        if(!root){
+            return 0;
+        }
+        int left=1;
+        TreeNode* l=root->left;
+        while(l){
+            l=l->left;
+            left+=1;
+        }
+        int right=1;
+        TreeNode* r=root->right;
+        while(r){
+            r=r->right;
+            right+=1;
+        }
+        if(left==right)
+            return pow(2,left)-1;
+        return 1+countNodes(root->left)+countNodes(root->right);
+    }
+};
