@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        int i,j,pos=0,min=0;
+        vector<int> ans;
+        for(i=0;i<nums.size()-1;i++){
+            min=nums[i];
+            pos=i;
+            for(j=i+1;j<nums.size();j++){
+                if(min>nums[j]){
+                    min=nums[j];
+                    pos=j;
+                }
+            }
+            if(pos!=i){
+                nums[pos]=nums[i];
+                nums[i]=min;
+            }
+        }
+        for(i=0;i<nums.size();i++){
+            if(target==nums[i]){
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
+};
