@@ -1,0 +1,27 @@
+class Solution {
+public:
+   string addBinary(string a, string b) {
+    int i = a.size()-1;
+    int j = b.size()-1;
+    string ret = "";
+    int carry,curA,curB;
+    carry = 0;
+    while(i>=0 || j>= 0 || carry >0){
+        curA = 0;
+        curB = 0;
+        if(i>= 0)
+            curA = a[i]-'0';
+        if(j>= 0)
+            curB = b[j]-'0';
+        int curSum = curA+curB+carry;
+        char c = curSum%2+'0';
+        ret = c+ret;
+        carry = 0;
+        if(curSum>1)
+            carry = 1;
+        j--;
+        i--;
+    }
+    return ret;
+    }
+};
