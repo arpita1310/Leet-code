@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<int>> largeGroupPositions(string S) {
+        vector<vector<int>> v;
+        int c=1,i;
+        for(i=1;i<S.length();i++)
+        {
+            if(S[i]==S[i-1]) c++;
+            
+            else
+            {   
+                int p=i-c;
+                if(c>2)
+                {   
+                    v.push_back({p,i-1});
+                }
+                c=1;
+            }
+        }
+        int p=i-c;
+                if(c>=3)
+                {
+                    v.push_back({p,i-1});
+                }
+        return v;
+    }
+};
