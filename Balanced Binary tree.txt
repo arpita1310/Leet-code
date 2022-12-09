@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(root==NULL) return true;
+        return height(root)!=-1;
+    }
+    int height(TreeNode* root){
+        if(root==NULL) return 0;
+        int left=height(root->left);
+        int right=height(root->right);
+        int bf=abs(left-right);
+        if(bf>1 ||left==-1 || right==-1) return -1;
+        return 1+max(left,right);
+    }
+};
