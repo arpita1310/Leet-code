@@ -1,0 +1,21 @@
+class Solution {
+public:
+    void sortColors(vector<int>& a) {
+        int n=a.size();
+       int min=0,pos=0,i,j;
+       for(i=0;i<n-1;i++){
+            min=a[i];
+            pos=i;
+            for(j=i+1;j<n;j++){
+              if(min>a[j]){
+                min=a[j];
+                pos=j;
+              }
+            }
+        if(pos!=i){
+           a[pos]=a[i];
+           a[i]=min;
+        }
+       }
+    }
+};
