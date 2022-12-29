@@ -1,0 +1,25 @@
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(head==NULL || head->next==NULL)
+            return head;
+        ListNode* headOfRest = insertionSortList(head->next);
+        if(head->val <= headOfRest->val)
+        {
+            head->next = headOfRest;
+            return head;
+        }
+        else
+        {
+            ListNode* p = headOfRest;
+            while(p->next && p->next->val < head->val)
+            {
+                p = p->next;
+            }
+            
+            head->next = p->next;
+            p->next = head;
+            return headOfRest;
+        }
+    }
+};
