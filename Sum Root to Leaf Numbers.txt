@@ -1,0 +1,16 @@
+class Solution{
+    public:
+    int helper(TreeNode* root, int prev)
+    {
+        if(!root)
+            return 0;
+        int num = prev * 10 + (root->val);
+        if(!root->left && !root->right)
+            return num;
+        else
+            return helper(root->left, num) + helper(root->right, num);
+    }
+    int sumNumbers(TreeNode* root) {
+        return helper(root, 0);
+    }
+};
