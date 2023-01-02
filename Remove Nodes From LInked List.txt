@@ -1,0 +1,17 @@
+class Solution {
+public:
+    ListNode* removeNodes(ListNode* head) {
+        if(head == NULL || head->next == NULL)
+            return head;
+        
+        int val = head->val;
+        ListNode* newNode = removeNodes(head->next);
+        if(newNode->val <= val){
+            head->next = newNode;
+            return head;
+        }else{
+            return newNode;
+        }
+        
+    }
+};
