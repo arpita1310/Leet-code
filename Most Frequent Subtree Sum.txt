@@ -1,0 +1,25 @@
+class Solution {
+public:
+   int solve(TreeNode* root,unordered_map<int,int>&m,int &mxfreq)
+   {
+       if(!root)
+       return 0;
+       int x = root->val + solve(root->left,m,mxfreq)+solve(root->right,m,mxfreq);
+       m[x]++;
+       mxfreq = max(m[x],mxfreq);
+       return x;
+   }
+    vector<int> findFrequentTreeSum(TreeNode* root) {
+        vector<int>res;
+        unordered_map<int,int>m;
+        int mxfreq=0;
+        solve(root,m,mxfreq);
+        
+        for(auto &x:m)
+        {
+            if(x.second==mxfreq)
+            res.push_back(x.first);
+        }
+        return res;
+    }
+};
