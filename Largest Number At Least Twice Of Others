@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+        int index=0;
+        int current=0,count=INT_MIN;
+        for(int i=0;i<nums.size();i++){
+            current=nums[i];
+            if(current>count){
+                count=current;
+                index=i;
+            }
+        } 
+        for(int i=0;i<nums.size();i++){
+            if(i==index) continue;
+          if((2*nums[i])>nums[index]) return -1;
+        }
+        return index;
+    }
+};
