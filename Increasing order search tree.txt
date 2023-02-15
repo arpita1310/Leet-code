@@ -1,0 +1,25 @@
+class Solution {
+public:
+   void inorder(TreeNode *root,vector<int> &arr)
+   {
+       if(root==NULL)
+        return;
+        inorder(root->left,arr);
+        arr.push_back(root->val);
+        inorder(root->right,arr);
+   }
+    TreeNode* increasingBST(TreeNode* root) {
+        vector<int> arr;
+        inorder(root,arr);
+        root->val=arr[0];
+        root->left=NULL;
+        root->right=NULL;
+        TreeNode *dummy=root;
+        for(int i=1;i<arr.size();i++){
+            TreeNode *newNode=new TreeNode(arr[i]);    
+            root->right=newNode;   
+            root=newNode;
+        }
+        return dummy;
+    }
+};
