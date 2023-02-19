@@ -1,0 +1,21 @@
+class Solution {
+public
+    vectorint topKFrequent(vectorint& nums, int k) {
+        vectorintans;
+        int count=0;
+        unordered_mapint,intmap;
+        for(auto xnums){
+            map[x]++;
+        }
+        multimapint,int,greaterintmap2;
+         for(auto itmap){
+             map2.insert({it.second,it.first});
+         }
+         for(auto tempmap2){
+             count++;
+             if(count  k) return ans;
+             ans.push_back(temp.second);
+         }
+    return ans;
+    }
+};
