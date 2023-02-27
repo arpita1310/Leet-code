@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int readEquation(string& e, int i, int& x, int& val) {
+        for (; i < e.length() && e.at(i) != '='; i++) {
+            int v = 1;
+            if (e.at(i) == '-' && e.at(i+1) == 'x') {
+                x--;
+                i++;
+            } else if (e.at(i) == 'x') x++;
+            else if (e.at(i) != '+') {
+                v = stoi(e.substr(i, 4)); 
+                while (i+1 < e.length() && e.at(i+1) >= '0' && e.at(i+1) <= '9') i++;
+                if (i+1 < e.length() && e.at(i+1) == 'x') {
+                    i++;
+                    x += v;
+                } else val += v;
+            }
+        }
+        return i;
+    }
+    string solveEquation(string equation) {
+        int leftx = 0, rightx = 0, leftval = 0, rightval = 0;
+        readEquation(equation, readEquation(equation, 0, leftx, leftval)+1, rightx, rightval);
+        rightval -= leftval;
+        leftx -= rightx;
+        if (leftx == 0 && rightval != 0) return "No solution";
+        else if (leftx == 0) return "Infinite solutions";
+        else {
+            return "x=" + to_string(rightval/leftx);
+        }
+    }
+};
