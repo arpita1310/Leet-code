@@ -1,0 +1,18 @@
+class Solution {
+public:
+	int ans = 0;
+	void solve(TreeNode *root, int buff){
+		buff = buff*2 + root->val;
+		if(!root->left && !root->right){
+			ans += buff;
+			return;
+		}
+		if(root->left) solve(root->left, buff);
+		if(root->right) solve(root->right, buff);
+	}
+	int sumRootToLeaf(TreeNode* root) {
+		int buff = 0;
+		solve(root, buff);
+		return ans;
+	}
+};
