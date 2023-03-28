@@ -1,0 +1,24 @@
+class Solution {
+public
+    vectorint getArray(ListNode head){
+        vectorint ans;
+        while(head){
+            ans.push_back(head-val);
+            head=head-next;
+        }
+        return ans;
+    }
+    TreeNode createBinarySearchTree(TreeNode root,vectorint& arr,int s,int e){
+        if(se) return NULL;
+        int mid=s+(e-s)2;
+        root=new TreeNode(arr[mid]);
+        root-left=createBinarySearchTree(root-left,arr,s,mid-1);
+        root-right=createBinarySearchTree(root-right,arr,mid+1,e);
+        return root;
+    }
+    TreeNode sortedListToBST(ListNode head) {
+        TreeNode root=NULL;
+        vectorint arr=getArray(head);
+        return createBinarySearchTree(root,arr,0,arr.size()-1);
+    }
+};
