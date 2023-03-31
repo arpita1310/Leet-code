@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int goodNodes(TreeNode* root) {
+        int result = 0;
+        dfs(root, root->val, result);
+        return result;
+        
+    }
+    void dfs(TreeNode* root, int Maxvalue, int &result)
+    {
+        if(root==NULL) return;
+        if(root->val>=Maxvalue) result++;
+        dfs(root->left, max(Maxvalue, root->val), result);
+        dfs(root->right, max(Maxvalue, root->val), result);
+    }
+};
