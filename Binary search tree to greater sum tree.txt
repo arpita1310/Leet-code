@@ -1,0 +1,15 @@
+class Solution {
+    int sum = 0;
+public:
+    void solve(TreeNode* root){
+        if(!root) return;
+        solve(root->right);
+        sum+=root->val;
+        root->val = sum;
+        solve(root->left);
+    }
+    TreeNode* bstToGst(TreeNode* root) {
+        solve(root);
+        return root;
+    }
+};
