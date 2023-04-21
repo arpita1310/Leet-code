@@ -1,0 +1,33 @@
+class Solution {
+public:
+    long long int check(int n){
+        string num = to_string(n);
+        long long int ans=0;
+        for(int i=1;i<num.length();i++){
+            ans+=i*pow(10,i-1)*9;
+        }
+        ans+=((n-pow(10,num.length()-1))*num.length());
+        return ans;
+    }
+    int findNthDigit(int n) {
+        int l=1,r=1e9;
+        int ans=0;
+        if(n<10){
+            return n;
+        }
+        while(l<=r){
+            int mid=l+(r-l)/2;
+            if(check(mid)>=n){
+                ans=mid-1;
+                r=mid-1;
+            }
+            else{
+                l=mid+1;
+            }
+        }
+        int p = n-check(ans);
+        string num = to_string(ans);
+        p--;
+        return (num[p]-'0');
+    }
+};
