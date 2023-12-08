@@ -1,0 +1,25 @@
+class Solution {
+public:
+    map<pair<int,int>, vector<TreeNode*>> m; 
+    vector<TreeNode*> buildTrees(int l, int r) {
+        if(l > r) return {nullptr};
+        if(m.find({l, r}) != m.end()) return m[{l, r}];
+        vector<TreeNode*> ans;
+        for(int i=l; i<=r; ++i)
+        {
+            vector<TreeNode*> left = buildTrees(l, i-1);
+            vector<TreeNode*> right = buildTrees(i+1, r);  
+            for(int j=0; j<left.size(); ++j)
+            {
+                for(int k=0; k<right.size(); ++k)
+                {
+                    ans.push_back(new TreeNode(i, left[j], right[k]));
+                }
+            }
+        }
+        return m[{l, r}] = ans; 
+    }
+    vector<TreeNode*> generateTrees(int n) {
+        return buildTrees(1, n);
+    }
+};
