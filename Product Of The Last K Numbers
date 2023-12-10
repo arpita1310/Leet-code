@@ -1,0 +1,21 @@
+class ProductOfNumbers {
+public:
+  vector<int> table;
+  
+  ProductOfNumbers() {
+    table.push_back(1);
+  }
+  
+  void add(int num) {
+    if(num == 0) {
+      table.clear();
+      table.push_back(1); 
+    }
+    else table.push_back(table.back() * num);
+  }
+    
+  int getProduct(int k) {
+    if( ++k >  table.size()) return 0;
+    return table.back()/ table[table.size() - k];
+  }
+};
