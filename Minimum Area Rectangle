@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int minAreaRect(vector<vector<int>>& points) {
+        unordered_map<int,unordered_set<int>>cor;
+        for(int i=0;i<points.size();i++){
+            cor[points[i][0]].insert(points[i][1]);
+        }
+        int ans = INT_MAX;
+        for(int i=0;i<points.size()-1;i++){
+            for(int j=i+1;j<points.size();j++){
+                int x1 = points[i][0];
+                int y1 = points[i][1];
+                int x2 = points[j][0];
+                int y2 = points[j][1];
+                if(x1!=x2 && y1!=y2 && cor[x2].find(y1)!=cor[x2].end() && cor[x1].find(y2)!=cor[x1].end()){
+                    int width = abs(x2-x1);
+                    int height = abs(y2-y1);
+                    ans = min(ans, width*height);
+                }
+            }
+        }
+        return ans == INT_MAX ? 0 : ans;
+    }
+};
