@@ -1,0 +1,1 @@
+                    row[i][num] = col[j][num] = grid_3x3[k][num] = 1;
