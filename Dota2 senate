@@ -1,0 +1,22 @@
+string predictPartyVictory(string s) {
+    int i=0,n=s.size(),dis=0;
+    stack<char>st;
+    while((dis+st.size())<n)
+    {
+        if(s[i]=='@')
+        {
+            i=(i+1)%n;
+            continue;
+        }
+        else if(st.empty() || s[i]==st.top()) st.push(s[i]);
+        else 
+        {
+            s[i]='@';
+            dis++;
+            st.pop();
+        }
+        i=(i+1)%n;
+    }
+    
+    return st.top()=='D'?"Dire":"Radiant";
+}
