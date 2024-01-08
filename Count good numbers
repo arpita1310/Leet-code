@@ -1,0 +1,24 @@
+#define mod 1000000007
+class Solution {
+private:
+    long long power(long long x,long long y){
+        if(y==0)return 1;
+        long long ans;
+        if(y%2==0){
+            ans = power((x*x)% mod,y/2);
+            ans %= mod;
+            return ans;
+        }
+        else{
+            ans = x*power(x,y-1);
+            ans %= mod;
+            return ans;
+        }
+    }
+public:
+    int countGoodNumbers(long long n) {
+        long long odd = n/2;
+        long long even = n/2 + (n%2);
+        return (power(5,even)*power(4,odd))%mod;
+    }
+};
