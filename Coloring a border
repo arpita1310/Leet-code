@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int dx[4] = {0,1,0,-1};
+    int dy[4] = {1,0,-1,0};
+    void dfs(vector<vector<int>>& grid, int x, int y, int num){
+        grid[x][y]= -num;
+        int cnt=0;
+        for(int i=0; i<4; ++i){
+            int x1 = x+dx[i], y1=y+dy[i];
+            if(x1<0 || x1>=grid.size() || y1<0 || y1>=grid[0].size() || abs(grid[x1][y1]) != num) continue;
+            cnt+=1;
+            if(grid[x1][y1] != -num)dfs(grid,x1,y1,num);
+        }
+        if(cnt==4) grid[x][y] = num;
+    }
+    
+    vector<vector<int>> colorBorder(vector<vector<int>>& grid, int row, int col, int color) {
+        int num = grid[row][col];
+        dfs(grid,row,col,num);
+        for(int i=0; i<grid.size(); ++i){
+            for(int j=0; j<grid[0].size(); ++j){
+                if(grid[i][j] == -num) grid[i][j]=color;
+            }
+        }
+        return grid;
+    }
+};
