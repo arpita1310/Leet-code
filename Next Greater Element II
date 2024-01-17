@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int nextGreaterElement(int n) 
+    {
+        string nums=to_string(n);
+        int len=nums.size();
+        int currmax=nums[len-1]-'0';
+        int fdp=-1,sdp=-1;
+        for(int i=len-2;i>=0;i--)
+        {
+            if(nums[i]-'0'<currmax)
+            {
+                fdp=i;
+                break;
+            }
+            currmax=nums[i]-'0';
+        }
+        if(fdp==-1)return -1;
+        int min=10;
+        for(int i=fdp+1;i<len;i++)
+        {
+            if(nums[i]-'0'>nums[fdp]-'0' && nums[i]-'0'<min)
+            {
+                min=nums[i]-'0';
+                sdp=i;
+            }
+        }
+        if(sdp==-1)return -1;
+        swap(nums[fdp],nums[sdp]);
+        sort(nums.begin()+fdp+1,nums.end());
+        long long ans=stoll(nums);
+        return (ans>INT_MAX)?-1:ans;
+
+    }
+};
