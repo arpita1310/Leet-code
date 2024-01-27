@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<char> k1 = {'q','w','e','r','t','y','u','i','o','p','Q','W','E','R','T','Y','U','I','O','P'};
+        vector<char> k2 = {'a','s','d','f','g','h','j','k','l','A','S','D','F','G','H','J','K','L' };
+        vector<char> k3 = {'z','x','c','v','b','n','m','Z','X','C','V','B','N','M'};
+
+        vector<string>ans;
+        for(int i=0;i<words.size();i++){
+            string str=words[i];
+            int k1Size=0, k2Size=0, k3Size=0;
+            for(int j=0;j<str.size();j++){
+                if(find(k1.begin(), k1.end(), str[j]) != k1.end()){
+                    k1Size++;
+                }
+                if(find(k2.begin(), k2.end(), str[j]) != k2.end()){
+                    k2Size++;
+                }
+                if(find(k3.begin(), k3.end(), str[j]) != k3.end()){
+                    k3Size++;
+                }
+            }
+            if(k1Size == str.size() || k2Size == str.size() || k3Size == str.size()){
+                ans.push_back(str);
+            }
+        }
+        return ans;
+    }
+};
