@@ -1,0 +1,31 @@
+class Solution {
+public:
+    unordered_map<string,bool>mp;
+    bool isCheck(string &word, unordered_set<string> &st){
+        if(mp.find(word)!=mp.end()){
+            return mp[word];
+        }
+        for(int i=0;i<word.size();i++){
+            string preffix= word.substr(0,i+1);
+            string suffix = word.substr(i+1);
+            if(st.find(preffix)!=st.end() && st.find(suffix)!=st.end()  || st.find(preffix)!=st.end() && isCheck(suffix,st)){
+                return mp[word]= true;
+            } 
+        }
+        return mp[word]=false;
+    }
+
+    vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {
+        mp.clear();
+        unordered_set<string> st(begin(words), end(words));
+        int n= words.size();
+        vector<string>result;
+        for(int i=0;i<n;i++){
+            string word= words[i];
+            if(isCheck(word,st)){
+                result.push_back(word);
+            }
+        }
+        return result;
+    }
+};
