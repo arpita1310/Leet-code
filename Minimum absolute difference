@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
+        int min_diff = INT_MAX;
+        sort(arr.begin(), arr.end());
+        for (int i = 0; i < arr.size() - 1; i++) {
+            if (arr[i + 1] - arr[i] < min_diff) {
+                min_diff = arr[i + 1] - arr[i];
+            }
+        }
+        vector<vector<int>> ans;
+        vector<int> temp;
+        for (int i = 0; i < arr.size() - 1; i++) {
+            temp.clear();
+            if (arr[i + 1] - arr[i] == min_diff) {
+                temp.push_back(arr[i]);
+                temp.push_back(arr[i + 1]);
+                ans.push_back(temp);
+            }
+        }
+        return ans;
+    }
+};
