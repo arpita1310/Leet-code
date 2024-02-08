@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+       bool isASc=true,isDes=true;
+        for(int i=0;i<nums.size()-1;i++)
+        {
+            if(nums[i]>nums[i+1])
+            isASc=false; 
+        }
+        for(int i=0;i<nums.size()-1;i++)
+        {
+            if(nums[i]<nums[i+1])
+            isDes=false; 
+        }
+        return (isASc||isDes);
+    }
+};
