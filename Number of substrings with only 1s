@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int numSub(string s) {
+        long long c = 0,ans = 0;
+        for(auto ch : s){
+            if(ch == '1'){
+                c ++;
+            }else{
+                ans += c*(c+1)/2;
+                c=0;
+            }
+        }
+    ans += c*(c+1)/2;
+    return ans%1000000007;
+    }
+};
