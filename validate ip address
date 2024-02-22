@@ -1,0 +1,82 @@
+class Solution {
+public:
+    
+    bool validHexaDecimal(char ch) {
+        char upCh = toupper(ch);
+        int asciiVal = int(upCh);
+        return asciiVal>=65 && asciiVal<=70;
+    }
+    
+    bool validateSubstring(string substring) {
+        if(substring.size() == 0)
+            return false;
+        int numEquivalent = stoi(substring);
+        if(numEquivalent < 0 || numEquivalent > 255)
+            return false;
+        if(substring.at(0) == '0' && substring.size() > 1)
+            return false;
+        return true;
+    }
+    
+    string validateIPv4(string IP) {
+        int dotCounter = count(IP.begin(), IP.end(), '.');
+        if(dotCounter != 3)
+            return "Neither";
+        string currentSubstring = "";
+        for(int i=0; i<IP.size(); i++) {
+            char ch = IP.at(i);
+            if(ch == '.') {
+                if(currentSubstring.size() == 0)
+                    return "Neither";
+                if(!validateSubstring(currentSubstring))
+                    return "Neither";
+                currentSubstring = "";
+                continue;
+            }
+            if(isdigit(ch)) {
+                currentSubstring += ch;
+                if(currentSubstring.size() > 3)
+                    return "Neither";
+                continue;
+            }
+            return "Neither";
+        }
+        if(!validateSubstring(currentSubstring))
+            return "Neither";
+        return "IPv4";
+    }
+    
+    string validateIPv6(string IP) {
+        int colonCounter = count(IP.begin(), IP.end(), ':');
+        if(colonCounter != 7)
+            return "Neither";
+        int count = 0;
+        for(int i=0; i<IP.size(); i++) {
+            char ch = IP.at(i);
+            if(ch == ':') {
+                if(count == 0)
+                    return "Neither";
+                count = 0;
+                continue;
+            }
+            if(isdigit(ch) || validHexaDecimal(ch)) {
+                count++;
+                if(count > 4)
+                    return "Neither";
+                continue;
+            }
+            return "Neither";
+        }
+        if(count > 4 || count == 0)
+            return "Neither";
+        return "IPv6";
+    }
+    
+    
+    string validIPAddress(string IP) {
+        if(find(IP.begin(), IP.end(), '.') == IP.end()) {
+            return validateIPv6(IP);
+        }
+        return validateIPv4(IP);
+    }
+};
