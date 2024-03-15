@@ -1,0 +1,31 @@
+class Solution 
+{
+public:
+int binarysearch(vector<int>nums)
+{
+        int low = 0;
+        int high = nums.size()-1;
+        while(low<=high)
+        {
+            int mid = low +(high-low)/2;
+            if(nums[mid] >= 0)
+            {
+               low = mid+1;
+            }
+            else
+            {
+                high = mid-1;
+            }
+        }
+    return nums.size()-1-high;
+}
+    int countNegatives(vector<vector<int>>& grid) 
+    {
+      int res = 0;
+      for(int i = 0; i<grid.size(); i++){
+          res = res+binarysearch(grid[i]);
+      }
+      return res;
+    }
+    
+};
